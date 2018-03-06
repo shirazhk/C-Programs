@@ -6,40 +6,43 @@
 //  Copyright © 2017 Srz studios. All rights reserved.
 //
 #include<stdio.h>
-int main()
-{
+int sorting(int [], int);
+
+int main(){
     int N;
     scanf("%d",&N);
-    int a[N];
-    for(int i=0;i<N;i++)
-    {
-        scanf("%d",&a[i]);
+    int A[N];
+    int B[N];
+    int i,k;
+    int result=0;
+    
+    for(i=0; i<N; i++){
+        scanf("%d", &A[i]);
     }
-    int j=N-1,swap,eqcheck=0;
-    while(j!=0)
-    {
-        for(int k=0;k<=j;k++)
-        {
-            if(a[k]<a[k+1])
-            {
-                swap=a[k+1];
-                a[k+1]=a[k];
-                a[k]=swap;
-            }
-            if(a[k]==a[k+1])
-            {
-                eqcheck=1;
+    for(i=0; i<N; i++){
+        scanf("%d", &B[i]);
+    }
+    
+    sorting(A, N);
+    sorting(B, N);
+    
+    for(i=0; i<N; i++){
+        k=N-i-1;
+        result = result + A[i] * B[k];
+    }
+    printf("%d", result);
+    return 0;
+}
+
+int sorting(int a[], int N){
+    int i,j,temp=0;
+    for(i=0; i<N; i++){
+        for(j=0; j<N; j++){
+            if(a[i] < a[j]){
+                temp = a[j];
+                a[j] = a[i];
+                a[i] = temp;
             }
         }
-        j--;
     }
-    if(eqcheck==0)
-    {
-        printf("YES");
-    }
-    else
-    {
-        printf("NO");
-    }
-    return 0;
 }
