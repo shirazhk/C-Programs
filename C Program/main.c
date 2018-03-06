@@ -6,43 +6,48 @@
 //  Copyright © 2017 Srz studios. All rights reserved.
 //
 #include<stdio.h>
-int sorting(int [], int);
+int sumprefix(int);
+int sumsuffix(int);
+
 
 int main(){
     int N;
-    scanf("%d",&N);
-    int A[N];
-    int B[N];
-    int i,k;
-    int result=0;
+    scanf("%d", &N);
     
+    int A[N];
+    int minimum;
+    int i=0;
     for(i=0; i<N; i++){
         scanf("%d", &A[i]);
     }
-    for(i=0; i<N; i++){
-        scanf("%d", &B[i]);
+    
+    int i1=0;
+    int i2=0;
+    int sum[N];
+    int lc=1;
+    int j=0;
+    
+    for(j=0; j<N; j++){
+        i1 = sumprefix(A[j]);
     }
     
-    sorting(A, N);
-    sorting(B, N);
-    
-    for(i=0; i<N; i++){
-        k=N-i-1;
-        result = result + A[i] * B[k];
+    for(j=0; j<N; j++){
+        i2 = sumprefix(A[j]);
     }
-    printf("%d", result);
-    return 0;
-}
-
-int sorting(int a[], int N){
-    int i,j,temp=0;
-    for(i=0; i<N; i++){
-        for(j=0; j<N; j++){
-            if(a[i] < a[j]){
-                temp = a[j];
-                a[j] = a[i];
-                a[i] = temp;
-            }
+    
+    minimum = A[0];
+    for (j=0; j<N; j++){
+        if (A[j] < minimum ){
+            minimum = A[j];
+            lc = j+1;
         }
     }
+    printf("%d",lc);
+    return 0;
+}
+int sumprefix(int i){
+    return i;
+}
+int sumsuffix(int i){
+    return i;
 }
