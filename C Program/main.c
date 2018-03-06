@@ -5,37 +5,41 @@
 //  Created by Shiraz Hasan Khan on 05/12/17.
 //  Copyright © 2017 Srz studios. All rights reserved.
 //
-
 #include<stdio.h>
-int divcount(int y);
-int dcounter=0;
 int main()
 {
-    int N,counter=0;
+    int N;
     scanf("%d",&N);
-    for(int k=1;k<=N;k++)
+    int a[N];
+    for(int i=0;i<N;i++)
     {
-        if(N%k==0)
-        {
-            counter+=divcount(k);
-        }
+        scanf("%d",&a[i]);
     }
-    printf("%d",counter);
+    int j=N-1,swap,eqcheck=0;
+    while(j!=0)
+    {
+        for(int k=0;k<=j;k++)
+        {
+            if(a[k]<a[k+1])
+            {
+                swap=a[k+1];
+                a[k+1]=a[k];
+                a[k]=swap;
+            }
+            if(a[k]==a[k+1])
+            {
+                eqcheck=1;
+            }
+        }
+        j--;
+    }
+    if(eqcheck==0)
+    {
+        printf("YES");
+    }
+    else
+    {
+        printf("NO");
+    }
     return 0;
 }
-
-int divcount(int y)
-{
-    dcounter=0;
-    while(y!=0)
-    {
-        int digit=y%10;
-        if(digit==3||digit==5||digit==6)
-        {
-            dcounter++;
-        }
-        y=y/10;
-    }
-    return dcounter;
-}
-
